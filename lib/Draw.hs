@@ -3,8 +3,6 @@ module Draw where
 import           Graphics.Gloss
 import           Percolation
 
-strokeWidth = 0.15
-
 hexagon :: Picture
 hexagon = polygon
     [ (0          , 1)
@@ -15,11 +13,11 @@ hexagon = polygon
     , (-sqrt 3 / 2, 0.5)
     ]
 
-drawPath :: Color -> [Edge] -> Picture
-drawPath c p = color c $ pictures $ map drawEdge p
+drawPath :: Color -> Float -> [Edge] -> Picture
+drawPath c strokeWidth p = color c $ pictures $ map (drawEdge strokeWidth) p
 
-drawEdge :: Edge -> Picture
-drawEdge (Edge coord side) =
+drawEdge :: Float -> Edge -> Picture
+drawEdge strokeWidth (Edge coord side) =
     translateHex coord $ rotate (fromIntegral side * 60) $ edge
   where
     x    = -sqrt 3 / 2
