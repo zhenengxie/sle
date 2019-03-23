@@ -42,8 +42,4 @@ main = do
         _       -> 50
 
   picture <- genPictureHex size
-  display (InWindow "SLE" -- window title
-                          (1000, 1000) -- window size
-                                       (0, 0)) -- window position
-                                               backgroundColor -- background color
-                                                               picture
+  display FullScreen backgroundColor picture
